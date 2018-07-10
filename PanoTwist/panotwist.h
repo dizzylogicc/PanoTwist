@@ -24,7 +24,6 @@
 #define PANOTWIST_H
 
 #include "Array.h"
-#include "CvUtils.h"
 #include "CvImageWidget.h"
 
 #include "NadirZenithWidget.h"

@@ -1,0 +1,17 @@
+*.sdf
+*.suo
+*.exe
+*.log
+*.tlog
+*.dll
+*.lib
+*.pdb
+*.opensdf
+moc_*.*
+ui_*.*
+Test/
+Icon/
+x64/
+PanoTwist/Resources/
+PanoTwist/GeneratedFiles/
+PanoTwist/x64/

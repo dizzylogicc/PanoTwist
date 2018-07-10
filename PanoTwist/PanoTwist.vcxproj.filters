@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="DialogAbout.cpp" />
+    <ClCompile Include="DialogHelpOrLicence.cpp" />
+    <ClCompile Include="DialogOpeningFolder.cpp" />
+    <ClCompile Include="DialogSaveAll.cpp" />
+    <ClCompile Include="DialogSaveOrOpen.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_CvImageWidget.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_DialogAbout.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_DialogHelpOrLicence.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_DialogOpeningFolder.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_DialogSaveAll.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_DialogSaveOrOpen.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_MaxSizeWidget.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_NadirZenithWidget.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_panotwist.cpp" />
+    <ClCompile Include="GeneratedFiles\qrc_panotwist.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_CvImageWidget.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_DialogAbout.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_DialogHelpOrLicence.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_DialogOpeningFolder.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_DialogSaveAll.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_DialogSaveOrOpen.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_MaxSizeWidget.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_NadirZenithWidget.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_panotwist.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MaxSizeWidget.cpp" />
+    <ClCompile Include="NadirZenithWidget.cpp" />
+    <ClCompile Include="panotwist.cpp" />
+    <ClCompile Include="QtUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Savable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_DialogAbout.h" />
+    <ClInclude Include="GeneratedFiles\ui_DialogHelpOrLicence.h" />
+    <ClInclude Include="GeneratedFiles\ui_DialogOpeningFolder.h" />
+    <ClInclude Include="GeneratedFiles\ui_MaxSizeWidget.h" />
+    <ClInclude Include="GeneratedFiles\ui_NadirZenithWidget.h" />
+    <ClInclude Include="GeneratedFiles\ui_panotwist.h" />
+    <ClInclude Include="Savable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="panotwist.h" />
+    <CustomBuild Include="panotwist.ui" />
+    <CustomBuild Include="MaxSizeWidget.h" />
+    <CustomBuild Include="DialogSaveOrOpen.h" />
+    <CustomBuild Include="DialogOpeningFolder.h" />
+    <CustomBuild Include="NadirZenithWidget.h" />
+    <CustomBuild Include="DialogSaveAll.h" />
+    <CustomBuild Include="DialogAbout.h" />
+    <CustomBuild Include="DialogHelpOrLicence.h" />
+    <CustomBuild Include="panotwist.qrc" />
+    <CustomBuild Include="NadirZenithWidget.ui" />
+    <CustomBuild Include="DialogOpeningFolder.ui" />
+    <CustomBuild Include="DialogAbout.ui" />
+    <CustomBuild Include="DialogHelpOrLicence.ui" />
+    <CustomBuild Include="MaxSizeWidget.ui" />
+    <CustomBuild Include="CvImageWidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="panotwist.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libexiv2.lib" />
+    <Library Include="libexpat.lib" />
+    <Library Include="opencv_world310.lib" />
+    <Library Include="xmpsdk.lib" />
+    <Library Include="zlib1.lib" />
+  </ItemGroup>
+</Project>
