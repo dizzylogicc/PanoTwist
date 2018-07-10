@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PanoTwistClass</class>
+ <widget class="QMainWindow" name="PanoTwistClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1089</width>
+    <height>573</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PanoTwist</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="panotwist.qrc">
+    <normaloff>:/PanoTwist/lensIcon.ico</normaloff>:/PanoTwist/lensIcon.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QPushButton" name="bnOpenFolder">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>4</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Open folder...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelCurrentFolder">
+    <property name="geometry">
+     <rect>
+      <x>124</x>
+      <y>11</y>
+      <width>1001</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Current folder</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bnPrevFile">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>40</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> &lt;&lt; Previous file</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bnNextFile">
+    <property name="geometry">
+     <rect>
+      <x>656</x>
+      <y>40</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Next file &gt;&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelCurrentFile">
+    <property name="geometry">
+     <rect>
+      <x>127</x>
+      <y>44</y>
+      <width>561</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Current file</string>
+    </property>
+   </widget>
+   <widget class="QScrollArea" name="scrollAreaImage">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>76</y>
+      <width>760</width>
+      <height>380</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>200</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>800</width>
+      <height>400</height>
+     </size>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>758</width>
+       <height>378</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="bnApply">
+    <property name="geometry">
+     <rect>
+      <x>793</x>
+      <y>480</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Apply to current image and save</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="framePolar">
+    <property name="geometry">
+     <rect>
+      <x>773</x>
+      <y>40</y>
+      <width>311</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QFrame" name="frameNadir">
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frameZenith">
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="labelDragImage">
+    <property name="geometry">
+     <rect>
+      <x>226</x>
+      <y>460</y>
+      <width>451</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>&lt;&lt;&lt;   Drag image to adjust the initial viewpoint   &gt;&gt;&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bnApplyAll">
+    <property name="geometry">
+     <rect>
+      <x>296</x>
+      <y>490</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Apply to all images and save</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frameMaxSize">
+    <property name="geometry">
+     <rect>
+      <x>773</x>
+      <y>386</y>
+      <width>311</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1089</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="actionLicense"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About PanoTwist</string>
+   </property>
+  </action>
+  <action name="actionLicense">
+   <property name="text">
+    <string>License</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="panotwist.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>bnOpenFolder</sender>
+   <signal>clicked()</signal>
+   <receiver>PanoTwistClass</receiver>
+   <slot>OnOpenFolderClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>99</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>143</x>
+     <y>71</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bnPrevFile</sender>
+   <signal>clicked()</signal>
+   <receiver>PanoTwistClass</receiver>
+   <slot>OnPrevFileClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>282</x>
+     <y>94</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bnNextFile</sender>
+   <signal>clicked()</signal>
+   <receiver>PanoTwistClass</receiver>
+   <slot>OnNextFileClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>740</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>635</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bnApply</sender>
+   <signal>clicked()</signal>
+   <receiver>PanoTwistClass</receiver>
+   <slot>OnApplyClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>700</x>
+     <y>781</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>670</x>
+     <y>551</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bnApplyAll</sender>
+   <signal>clicked()</signal>
+   <receiver>PanoTwistClass</receiver>
+   <slot>OnApplyToAllClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>353</x>
+     <y>796</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>302</x>
+     <y>798</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout</sender>
+   <signal>triggered()</signal>
+   <receiver>PanoTwistClass</receiver>
+   <slot>OnMenuAbout()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>409</x>
+     <y>418</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionHelp</sender>
+   <signal>triggered()</signal>
+   <receiver>PanoTwistClass</receiver>
+   <slot>OnMenuHelp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>409</x>
+     <y>418</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLicense</sender>
+   <signal>triggered()</signal>
+   <receiver>PanoTwistClass</receiver>
+   <slot>OnMenuLicense()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>409</x>
+     <y>418</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnOpenFolderClicked()</slot>
+  <slot>OnPrevFileClicked()</slot>
+  <slot>OnNextFileClicked()</slot>
+  <slot>OnRotateLeftClicked()</slot>
+  <slot>OnRotateRightClicked()</slot>
+  <slot>OnApplyClicked()</slot>
+  <slot>OnBnUpClicked()</slot>
+  <slot>OnBnDownClicked()</slot>
+  <slot>OnApplyToAllClicked()</slot>
+  <slot>OnMenuAbout()</slot>
+  <slot>OnMenuHelp()</slot>
+  <slot>OnMenuLicense()</slot>
+ </slots>
+</ui>

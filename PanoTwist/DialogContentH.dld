@@ -1,0 +1,32 @@
+<br/>
+<b>PanoTwist</b> is a free and open source editing tool for fully spherical (360° x 180°) equirectangular panoramas. It can adjust the initial panorama viewpoint, patch nadir and zenith, and automatically rescale the image if its size exceeds maximum allowed dimensions.<br/><br/><br/> 
+
+<b>Using PanoTwist</b><br/><br/>
+
+To use <b>PanoTwist</b>, a folder containing one or more equirectangular panoramas needs to be opened. This is accomplished by clicking the <b>Open Folder</b> button and selecting one of the panorama files in the required directory. The software then analyzes all JPG and TIFF files from that directory and selects ones that have the correct aspect ratio (2:1) for equirectangular panoramas.<br/><br/>
+
+These files can then be edited one by one or as a batch. You can switch between the different opened panoramas by clicking the <b>Next File</b> and <b>Previous File</b> buttons.<br/><br/><br/>
+
+<b>Adjusting the initial viewpoint</b><br/><br/>
+
+The initial azimuthal viepoint for the current panorama can be adjusted by dragging the panorama image left or right. The crosshairs at the center of the image indicate the initial viewpoint that will be shown when the image is viewed by a panorama viewer, or uploaded to Facebook or another panorama-aware web service.<br/><br/><br/>
+
+<b>Patching nadir and zenith</b><br/><br/>
+
+To patch the area around nadir (directly below the camera) or zenith (directly above), check the appropriate checkbox to the right of the main image area. The angular size of the patch can be adjusted using the patch size spin box. Three options to patch nadir/zenith are available:<br/><br/>
+
+(a) Patching with the average color: the patch is automatically set to the average color of non-black pixels underneath the current area of the patch.<br/><br/>
+(b) Patching with a specific color. To patch with a specific color, select the corresponding radio button and paste the required color in the hexadecimal notation (e.g., #1AB345) into the color box.<br/><br/>
+(c) Patching with an image: select the image which will be placed over nadir or zenith. The central circular area of the image will be used.<br/><br/><br/>
+
+ <b>Optional rescaling</b><br/><br/>
+
+If there is a hard limit on the dimensions of the panorama, you can specify the maximum size, and the software will automatically downscale the image if it is too large.<br/><br/><br/>
+
+<b>Saving individual images</b><br/><br/>
+
+After the changes are made, the image can be saved by pressing the <b>Apply to Current Image and Save</b> button. PanoTwist edits images non-destructively; that is, the initial image will not be modified. Instead, the panoramas will be saved in the subfolder named <b>/Panotwist output/</b> that will be created in the selected folder. The image names will be preserved in the subfolder.<br/><br/><br/>
+
+<b>Saving images in batch mode</b><br/><br/>
+
+It is also possible to apply the changes to all opened panorama images by pressing the <b>Apply to All Images and Save</b> button. In that case, the same nadir, zenith and rescaling options will be applied and the resulting files will be saved in the <b>Panotwist output</b> subfolder. The initial view position will not be modified. To change the initial viewpoint, images need to be processed and saved individually.<br/><br/>

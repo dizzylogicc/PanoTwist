@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/PanoTwist">
+        <file>lensIcon.ico</file>
+    </qresource>
+</RCC>

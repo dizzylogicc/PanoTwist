@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MaxSizeWidget</class>
+ <widget class="QWidget" name="MaxSizeWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>294</width>
+    <height>78</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MaxSizeWidget</string>
+  </property>
+  <widget class="QCheckBox" name="checkEnabled">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>9</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Limit maximum size</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinWidth">
+   <property name="geometry">
+    <rect>
+     <x>54</x>
+     <y>38</y>
+     <width>61</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="minimum">
+    <number>2</number>
+   </property>
+   <property name="maximum">
+    <number>1000000</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinHeight">
+   <property name="geometry">
+    <rect>
+     <x>191</x>
+     <y>38</y>
+     <width>61</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>500000</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label1">
+   <property name="geometry">
+    <rect>
+     <x>1</x>
+     <y>44</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Width:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label2">
+   <property name="geometry">
+    <rect>
+     <x>138</x>
+     <y>43</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Height:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label3">
+   <property name="geometry">
+    <rect>
+     <x>122</x>
+     <y>41</y>
+     <width>21</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>px</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label4">
+   <property name="geometry">
+    <rect>
+     <x>258</x>
+     <y>41</y>
+     <width>21</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>px</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>checkEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MaxSizeWidget</receiver>
+   <slot>OnCheckEnableToggled()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>51</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>140</x>
+     <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinWidth</sender>
+   <signal>editingFinished()</signal>
+   <receiver>MaxSizeWidget</receiver>
+   <slot>OnSpinWidthEditingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>59</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>12</x>
+     <y>59</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinHeight</sender>
+   <signal>editingFinished()</signal>
+   <receiver>MaxSizeWidget</receiver>
+   <slot>OnSpinHeightEditingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>64</x>
+     <y>77</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>32</x>
+     <y>65</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnCheckEnableToggled()</slot>
+  <slot>OnSpinWidthEditingFinished()</slot>
+  <slot>OnSpinHeightEditingFinished()</slot>
+ </slots>
+</ui>
