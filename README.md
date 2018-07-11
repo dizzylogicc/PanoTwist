@@ -3,7 +3,6 @@ PanoTwist is a free, open source editor for fully spherical (360° x 180°) equi
 * Setting the initial viewpoint
 * Rescaling the panorama
 * Patching nadir and zenith:
-
   * With an image
   * With the average color under the patch
   * With a specific color
@@ -24,11 +23,15 @@ This code is structured as a Visual Studio 2013 project. It has three dependenci
 
 Exiv2, in turn, depends on Expat, XMP SDK and zlib, but those dependencies are usually packaged with Exiv2 itself.
 
-So the steps needed to get this project up and running on your local machine are as follows:
+Therefore the steps needed to get this project up and running on your local machine with Visual Studio are as follows:
 * Clone this project: `git clone https://github.com/dizzylogicc/PanoTwist`
-* Download [Qt5](https://www.qt.io/download), if you don't have it already. Downloading the binaries is much simpler than downloading the sources and compiling them. The binaries must match your Visual Studio version and the runtime library (multi-threaded, multi-threaded DLL, etc.).
+* Download [Qt5](https://www.qt.io/download), if you don't have it already. Downloading Qt5 binaries is much simpler than downloading the sources and compiling them. The binaries must match your Visual Studio version and the runtime library (multi-threaded, multi-threaded DLL, etc.).
 * Download OpenCV and Exiv2. Here too, downloading the binary files is simpler than downloading and compiling the sources. 
 * Open the `PanoTwist.sln` file with Visual Studio 2013 (or later) with the [Qt plugin](http://doc.qt.io/archives/vs-addin/index.html) installed.
 * Point the project to where Qt5 is located on your system (`Qt5 menu -> Qt Options` and `Qt5 menu -> Qt Project Settings`).
 * Specify the include directories for Qt5, OpenCV and Exiv2 (`Project menu -> Properties -> Configuration Properties -> VC++ Directores -> Include directories`).
 * Add the following libraries for OpenCV and Exiv2 support to the project (`Project -> Add existing item`): libexiv2.lib, libexpat.lib, opencv_world310.lib, xmpsdk.lib, zlib1.lib. Note that library names may differ somewhat on your system. If these libraries are already among the project files, delete them first as they wouldn't be located at the same path on your system.
+* Build the project!
+
+## Acknowledgements
+This project uses some neat code from demottea's [CvImageWidget](https://github.com/delmottea/QtOpenCVWidget). Hat tip for making it publicly available!
