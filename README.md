@@ -33,5 +33,8 @@ Therefore the steps needed to get this project up and running on your local mach
 * Add the following libraries for OpenCV and Exiv2 support to the project (`Project -> Add existing item`): libexiv2.lib, libexpat.lib, opencv_world310.lib, xmpsdk.lib, zlib1.lib. Note that library names may differ somewhat on your system. If these libraries are already among the project files, delete them first as they wouldn't be located at the same path on your system.
 * Build the project!
 
+## License
+This project is licensed under GNU General Public License v.3 (GNU GPL v.3) or later version.
+
 ## Acknowledgements
 This project uses some neat code from demottea's [CvImageWidget](https://github.com/delmottea/QtOpenCVWidget). Hat tip for making it publicly available!
