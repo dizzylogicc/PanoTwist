@@ -30,7 +30,7 @@ Therefore the steps needed to get this project up and running on your local mach
 * Open the `PanoTwist.sln` file with Visual Studio 2013 (or later) with the [Qt plugin](http://doc.qt.io/archives/vs-addin/index.html) installed.
 * Point the project to where Qt5 is located on your system (`Qt5 menu -> Qt Options` and `Qt5 menu -> Qt Project Settings`).
 * Specify the include directories for Qt5, OpenCV and Exiv2 (`Project menu -> Properties -> Configuration Properties -> VC++ Directores -> Include directories`).
-* Add the following libraries for OpenCV and Exiv2 support to the project (`Project -> Add existing item`): libexiv2.lib, libexpat.lib, opencv_world310.lib, xmpsdk.lib, zlib1.lib. Note that library names may differ somewhat on your system. If these libraries are already among the project files, delete them first as they wouldn't be located at the same path on your system.
+* Add the following libraries for OpenCV and Exiv2 support to the project (`Project -> Add existing item`): libexiv2.lib, libexpat.lib, opencv_world310.lib, xmpsdk.lib, zlib1.lib. Note that library names may differ somewhat on your system. If these libraries are already among the project files, remove them from the project first.
 * Build the project!
 
 ## License
