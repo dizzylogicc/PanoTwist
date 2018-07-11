@@ -3,6 +3,7 @@ PanoTwist is a free, open source editor for fully spherical (360° x 180°) equi
 * Setting the initial viewpoint
 * Rescaling the panorama
 * Patching nadir and zenith:
+
   * With an image
   * With the average color under the patch
   * With a specific color
