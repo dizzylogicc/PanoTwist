@@ -450,7 +450,8 @@ void PanoTwist::OnApplyClicked()
 	BString resultsFolder = curFolder + saveSubfolderName;
 	
 	//Copy original full-size image and process it
-	cv::Mat temp(fullMat);
+	cv::Mat temp;
+	fullMat.copyTo(temp);
 	ProcessImage(temp, true, true);
 
 	//Write it in the results folder
