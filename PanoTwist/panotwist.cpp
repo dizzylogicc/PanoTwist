@@ -505,6 +505,7 @@ void PanoTwist::InsertExifTags(const BString& filename, const cv::Mat& image)
 	xmpData["Xmp.GPano.ProjectionType"] = Exiv2::XmpTextValue("equirectangular");
 	xmpData["Xmp.GPano.UsePanoramaViewer"] = true;
 
+	//Cropping - not cropped
 	xmpData["Xmp.GPano.CroppedAreaLeftPixels"] = int32_t(0);
 	xmpData["Xmp.GPano.CroppedAreaTopPixels"] = int32_t(0);
 
@@ -513,6 +514,17 @@ void PanoTwist::InsertExifTags(const BString& filename, const cv::Mat& image)
 
 	xmpData["Xmp.GPano.FullPanoWidthPixels"] = int32_t(image.cols);
 	xmpData["Xmp.GPano.FullPanoHeightPixels"] = int32_t(image.rows);
+
+	//Pose of the center of the images relative to the true north
+	xmpData["Xmp.GPano.PoseHeadingDegrees"] = 0.0;
+	xmpData["Xmp.GPano.PosePitchDegrees"] = 0.0;
+	xmpData["Xmp.GPano.PoseRollDegrees"] = 0.0;
+
+	//Initial view position
+	xmpData["Xmp.GPano.InitialViewHeadingDegrees"] = int32_t(0);
+	xmpData["Xmp.GPano.InitialViewPitchDegrees"] = int32_t(0);
+	xmpData["Xmp.GPano.InitialViewRollDegrees"] = int32_t(0);
+	
 
 	Exiv2::Image::AutoPtr imageFile = Exiv2::ImageFactory::open(filename);
 	if (!imageFile.get()) return;
