@@ -20,15 +20,115 @@
 * IN THE SOFTWARE.
 */
 
+
+
+//A partial clone for Microsoft's CStringA string class
+//Derived from std::string
+
+/*IMPLEMENTED FUNCTIONS:
+
+Append
+AppendChar
+Compare
+Delete
+Find
+FindOneOf
+Format
+GetAt
+GetLength
+GetString
+Insert
+IsEmpty
+Left
+MakeLower
+MakeReverse
+MakeUpper
+Mid
+Remove
+Replace
+ReverseFind
+Right
+SetAt
+SetString
+SpanExcluding
+SpanIncluding
+Tokenize
+Trim
+TrimLeft
+TrimRight
+
+//Operators:
+
+operator const char*
+operator[]
+operator =
+operator +;
+operator +=;
+operator ==
+operator !=
+operator <
+operator >
+operator <=
+operator >=
+
+*/
+
+/*FUNCTIONS THAT ARE NOT IMPLEMENTED:
+
+AllocSysString
+AnsiToOem
+AppendFormat
+Collate
+CollateNoCase
+CompareNoCase
+FormatMessage
+FormatMessageV
+FormatV
+GetEnvironmentVariable
+LoadString
+OemToAnsi
+SetSysString
+
+
+//Inherited from CSimpleString:
+
+CopyChars
+CopyCharsOverlapped
+Empty
+FreeExtra
+GetAllocLength
+GetBuffer
+GetBufferSetLength
+GetManager
+LockBuffer
+Preallocate
+ReleaseBuffer
+ReleaseBufferSetLength
+SetManager
+StringLength
+Truncate
+UnlockBuffer
+
+*/
+
+/* EXTENSIONS AND MODIFICATIONS:
+
+1) Most functions that are void() in CString return *this as BString& in the current implementation
+2) Added the function Remove(const char* str). It removes all occurrences of a string. Only a Remove(char c)
+   is present in CString.
+3) Added convenient functions WriteToFile(fileName) and ReadFromFile(fileName).
+4) Added void Serialize() function so that the string could be saved in BArchive
+
+*/
+
+
 #pragma once
+#include "BArchive.h"
 #include <string>
 #include <cstdarg>
 #include <algorithm>
 #include <vector>
 #include <fstream>
-
-//A partial clone for Microsoft's CStringA string class
-//Derived from std::string
 
 class BString : public std::string
 {
@@ -46,8 +146,55 @@ public:
 	char& operator[](int pos) { return GetAt(pos); }
 	const char& operator[](int pos) const { return GetAt(pos); }
 
+	BString& SetAt(int pos, char c) { (*this)[pos] = c; return *this; }
+
 	//Length of the string
 	int GetLength() const { return (int)length(); }
+	bool IsEmpty() const { return length() == 0; }
+
+	//The CString version of c_str()
+	const char* GetString() const { return c_str(); }
+
+	//The CString version of assign()
+	//Checks for nullptr
+	BString& SetString(const char* str) { if(str!=nullptr) assign(str); return *this; }
+	BString& SetString(const char* str, int nLength) { if(str!=nullptr) assign(str, size_t(nLength)); return *this; }
+
+	//Extension: a serialization function so that the string can be saved to BArchive
+	void Serialize(BArchive& ar)
+	{
+		int curLength = GetLength();
+
+		if (ar.IsLoading())
+		{
+			int newLength;
+			ar >> newLength;
+
+			char* buffer = new char[newLength + 1];
+			ar.RetrieveArray(buffer, newLength);
+			buffer[newLength] = 0;
+
+			operator=(buffer);
+			delete[] buffer;
+		}
+		else
+		{
+			ar << curLength;
+			ar.StoreArray((const char*)(*this), curLength);
+		}
+	}
+
+	//Comparison: < 0 if this string compares as "less" to the provided string
+	// >0 if it compares "greater"
+	// 0 if equal
+	//It's opposite to std::string comparison
+	int Compare(const char* other) const {return -compare(other);}
+
+	//Appending other strings and a character
+	BString& Append(const BString& other) { append(other); return *this; }
+	BString& Append(const char* str, int nLength) { append(str, size_t(nLength)); return *this; }
+	BString& Append(const char* str) { append(str); return *this; }
+	BString& AppendChar(char c){ *this += c; return *this; }
 
 	//Converting to lower and upper case
 	//Unlike the void CString functions, these ones return the referenct to itself
@@ -55,18 +202,24 @@ public:
 	BString& MakeLower() { for (auto &c : *this) c = tolower((unsigned char)c); return *this; }
 
 	//Getting left, right and middle portions of the string
-	BString Left(int nCount) const { return substr(0, nCount); }
+	BString Left(int nCount) const
+	{
+		if (nCount < 0) nCount = 0;
+		return substr(0, nCount);
+	}
 
 	BString Right(int nCount) const
 	{
 		int startPos = length() - nCount;
 		if (startPos < 0) startPos = 0;
+		if (nCount < 0) nCount = 0;
 		return substr(startPos, nCount);
 	}
 
 	BString Mid(int iFirst, int nCount) const
 	{
 		if (iFirst >= length() || iFirst < 0) return BString();
+		if (nCount < 0) nCount = 0;
 		return substr(iFirst, nCount);
 	}
 
@@ -225,6 +378,9 @@ public:
 			for (size_t k = ocVec[i] + oldSize; k < ocVec[i + 1]; k++) temp[curPos++] = at(k);
 		}
 
+		//Terminating zero
+		temp[tempStringSize - 1] = 0;
+
 		*this = temp;
 		delete[] temp;
 
@@ -243,6 +399,90 @@ public:
 	int Insert(int iIndex, char c) { insert(size_t(iIndex), 1, c); return length(); }
 	int Insert(int iIndex, char* str) { insert(size_t(iIndex), str); return length(); }
 
+	//Tokenizer function
+	//Returns next token in string, assuming tokens are separated by characters in delims
+	//Order of delimiter characters is not important
+	//Skips leading delimiters, then copies the token to return value
+	//Returns empty string if no more tokens are present or end of string is reached
+	//Starts searching at position iStart
+	//Updates iStart to the position past the delimiter character that follows the token
+	//Or sets the iStart to -1 if end of string is reached
+	BString Tokenize(const char* delims, int& iStart) const
+	{
+		if (iStart == -1) return "";
+
+		//Housekeeping vars to avoid type conversions, hopefully
+		int intLength = GetLength();
+		const char* buffer = c_str();
+
+		//Skip leading delimiters
+		while ( iStart < intLength && CCharPresent(delims, buffer[iStart]) ) ++iStart;
+
+		//Have we hit the end of string?
+		if (iStart >= intLength) { iStart = -1; return ""; }
+
+		//The initial position and the length of the substring we plan to return
+		int tokenStart, tokenLength;
+
+		//We have found the token start by now
+		tokenStart = iStart;
+		++iStart;
+
+		//Run through the token characters
+		while (iStart < intLength && !CCharPresent(delims, buffer[iStart])) ++iStart;
+
+		//We have either hit a delimiter or end of string - we know where the token ends
+		tokenLength = iStart - tokenStart;
+
+		//Move the iStart by one more symbol, check for end of string and return the token substring
+		++iStart;
+		if (iStart >= intLength) iStart = -1;
+
+		return Mid(tokenStart, tokenLength);
+	}
+
+	//Trimming:
+	//Trim(char c) - trim leading and trailing occurrences of a single character
+	//Trim(const char* str) - leading and trailing, all chars in the str
+	//Trim() - trim whitespace, " \n\r\t\v\f"
+
+	BString& Trim(char c){ TrimLeft(c); TrimRight(c); return *this; }
+	BString& Trim(const char* str = " \n\r\t\v\f") { TrimLeft(str); TrimRight(str); return *this; }
+
+	BString& TrimLeft(char c)
+	{
+		BString str; str += c;
+		TrimLeft(str.c_str());
+		return *this;
+	}
+
+	BString& TrimRight(char c)
+	{
+		BString str; str += c;
+		TrimRight(str.c_str());
+		return *this;
+	}
+
+	BString& TrimLeft(const char* str = " \n\r\t\v\f")
+	{
+		int startPos = 0;
+		const char* buffer = c_str();
+		while (startPos < GetLength() && CCharPresent(str, buffer[startPos])) startPos++;
+
+		if (startPos > 0) *this = Right(GetLength() - startPos);
+		return *this;
+	}
+
+	BString& TrimRight(const char* str = " \n\r\t\v\f")
+	{
+		int endPos = GetLength() - 1;
+		const char* buffer = c_str();
+		while (endPos >= 0 && CCharPresent(str, buffer[endPos])) endPos--;
+
+		if (endPos < (GetLength() - 1)) *this = Left(endPos + 1);
+		return *this;
+	}
+	
 	//Format function
 	BString& Format(const char* format, ...)
 	{
@@ -300,7 +540,7 @@ public:
 	//BString to BString assignment written by the compiler is fine
 	//Move assignment written by the compiler is fine
 
-private:
+protected:
 	//Figures out what size is needed for a format buffer
 	//By running vsnprintf with a nullptr
 	size_t FormatBufferSize(const char* format, va_list args) const
@@ -319,11 +559,19 @@ private:
 	}
 
 	//Determine the c-type string size
-	size_t CSize(const char* str) const
+	inline size_t CSize(const char* str) const
 	{
 		size_t res = 0;
 		while (str[res] != 0) res++;
 		return res;
+	}
+
+	//Whether a char is present in a C-type string 
+	inline bool CCharPresent(const char* str, char c) const
+	{
+		for (size_t i = 0; str[i] != 0; ++i) if (str[i] == c) return true;
+	
+		return false;
 	}
 
 	//Span extraction implemented with remove_if
