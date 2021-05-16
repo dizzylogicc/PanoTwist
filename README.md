@@ -13,9 +13,11 @@ Rescaling panoramas is sometimes needed as there can be hard limits on the maxim
 
 PanoTwist is a non-destructive editor in the sense that it leaves the original images unchanged so that it's always possible to go back. The edited files are saved separately in a subfolder.
 
-64-bit windows installer is available from the [author's website](https://dizzylogic.com/panotwist).
+## Windows Installer
 
-## Getting started
+A 64-bit windows installer is provided in the **Win64_Installer** folder. To install, simply download and run the provided **PanoTwist.msi** installer file.
+
+## Building from source
 This code is structured as a Visual Studio 2013 project. It has three dependencies which are not included into the distribution and need to be downloaded/compiled separately:
 * [Qt5](https://www.qt.io/download) - user interface (uses Core, Gui, Widgets)
 * [OpenCV](https://opencv.org/) - image manipulation
