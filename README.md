@@ -1,4 +1,7 @@
 ## PanoTwist
+<p align="left">
+  <img src="img/PanoTwist_Interface.png" width="650" title="PanoTwist interface">
+</p>
 ![PanoTwist interface](img/PanoTwist_Interface.png?raw=true "PanoTwist interface")
 
 PanoTwist is a free, open source editor for fully spherical (360° x 180°) equirectangular panoramas. It can perform the following editing functions:
@@ -17,7 +20,7 @@ PanoTwist is a non-destructive editor in the sense that it leaves the original i
 
 ## Patching nadir or zenith
 When shots for equirectangular panoramas are taken, the area directly underneath the camera (known as nadir) is usually not photographed since it contains the tripod or other equipment. Here is the nadir of a typical panorama where the black area corresponds to parts of the space not captured by camera shots:
-<p align="center">
+<p align="left">
   <img src="img/UnpatchedNadir.jpg" width="450" title="Unpatched nadir">
 </p>
 
