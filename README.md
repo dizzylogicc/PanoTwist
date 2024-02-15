@@ -15,6 +15,13 @@ Rescaling panoramas is sometimes needed as there can be hard limits on the maxim
 
 PanoTwist is a non-destructive editor in the sense that it leaves the original images unchanged so that it's always possible to go back. The edited files are saved separately in a subfolder.
 
+## Patching nadir or zenith
+When shots for equirectangular panoramas are taken, the area directly underneath the camera (known as nadir) is usually not photographed since it contains the tripod or other equipment. Here is the nadir of a typical panorama where the black area corresponds to parts of the space not captured by camera shots:
+![Unpatched nadir](img/UnpatchedNadir.png?raw=true "Unpatched nadir")
+
+PanoTwist can patch the nadir (or zenith) with an image chosen by the user or a given color. After patching up the image above:
+![Patched nadir](img/PatchedNadir.png?raw=true "Patched nadir")
+
 ## Windows Installer
 
 A 64-bit windows installer is provided in the **Win64_Installer** folder. To install, simply download and run the provided **PanoTwist.msi** installer file.
