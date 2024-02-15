@@ -2,7 +2,6 @@
 <p align="left">
   <img src="img/PanoTwist_Interface.png" width="650" title="PanoTwist interface">
 </p>
-![PanoTwist interface](img/PanoTwist_Interface.png?raw=true "PanoTwist interface")
 
 PanoTwist is a free, open source editor for fully spherical (360° x 180°) equirectangular panoramas. It can perform the following editing functions:
 * Setting the initial viewpoint
